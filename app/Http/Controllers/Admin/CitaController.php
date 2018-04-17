@@ -43,7 +43,7 @@ class CitaController extends Controller
 
         if( $request->ajax() ){
 
-            $quotes = Quote::where('date','=', $request->date)->get();
+            $quotes = Quote::where( [ ['date','=', $request->date], ['doctor_id','=', $request->doctor] ] )->get();
 
             $res_json = [];
 

@@ -270,6 +270,7 @@
 
           function searchData(){
                     var fecha           = $("#fecha_cita").val();
+                    var doctor_sel  = $("#doctor_sel").val();
                     var horas_quote     = [];
                     var customer_quote  = [];
                     var customer_id     = [];
@@ -293,6 +294,7 @@
                         method: 'post', 
                         data: { 
                             date : fecha,
+                            doctor : doctor_sel,
                         }, 
                         success: function(result){ 
 
