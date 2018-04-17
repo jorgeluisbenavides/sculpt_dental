@@ -28,7 +28,7 @@ Route::resource('doctores', 'Admin\DoctoresController');
 Route::resource('tratamientos', 'Admin\TratamientosController');
 Route::resource('inventario', 'Admin\InventarioController');
 Route::resource('notas', 'Admin\NotasController');
-Route::resource('citas', 'Admin\CitasController');
+//Route::resource('citas', 'Admin\CitasController');
 
 Route::get('cliente', 'Admin\ClientesController@create')->name('cli_index');
 
@@ -40,3 +40,15 @@ Route::get('buscar_fecha/{id}','Admin\PasosController@buscar_fecha')->name('busc
 Route::post('actualizar_cita', 'Admin\PasosController@actualizar_cita');
 Route::post('eliminar_cita', 'Admin\PasosController@eliminar_cita');
 Route::post('buscar_cita', 'Admin\PasosController@buscar_cita');
+
+
+//citas
+Route::get('citas','Admin\CitaController@index')->name('citas');
+Route::post('search','Admin\CitaController@searchCustomer');
+Route::post('search_cita','Admin\CitaController@searchQuote');
+Route::post('add_cita','Admin\CitaController@addQuote');
+Route::post('del_cita','Admin\CitaController@deleteQuote');
+Route::post('edit_cita','Admin\CitaController@editQuote');
+Route::post('update_cita','Admin\CitaController@updateQuote');
+
+Route::get('quote/{id}','Admin\CitaController@createQuote')->name('crear_cita');

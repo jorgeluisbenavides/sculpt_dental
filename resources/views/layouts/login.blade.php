@@ -62,7 +62,7 @@
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Administracion de Goodental
+                <p class="change_link">Administracion de Sculpt Dental
                   <a href="{{ route('register') }}">Register</a>
                 </p>
 
@@ -70,7 +70,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Goodental</h1>
+                  <h1><i class="fa fa-stethoscope"></i> Sculpt Dental </h1>
                   <p>©2018 All Rights Reserved. Privacy and Terms.</p>
                 </div>
               </div>

@@ -27,6 +27,7 @@ class CreateDoctorsTable extends Migration
             $table->string('home_phone')->nullable();
             $table->mediumtext('img_name')->nullable();
             $table->enum('status',['Activo','Inactivo'])->default('Activo');
+            $table->enum('type',['Doctor','Asistente'])->default('Doctor');
             $table->timestamps();
         });
     }

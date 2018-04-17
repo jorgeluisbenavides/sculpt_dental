@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Occupation;
+use App\Quote;
 
 class Customer extends Model
 {

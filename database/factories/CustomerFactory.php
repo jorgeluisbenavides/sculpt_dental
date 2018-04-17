@@ -4,11 +4,17 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Customer::class, function (Faker $faker) {
 
+    $name           = $faker->name;
+    $lastname_one   = $faker->lastname;
+    $lastname_two   = $faker->lastname;
+    $full_name      = $lastname_one . ' ' . $lastname_two . ' ' . $name;
+
     return [
-        'folio'         => rand(1,30),
-        'name'          => $faker->name,
-        'last_name_one' => $faker->lastname,
-        'last_name_two' => $faker->lastname,
+        'folio'         => rand(400000,500000),
+        'name'          => $name,
+        'last_name_one' => $lastname_one,
+        'last_name_two' => $lastname_two,
+        'full_name'     => $full_name,
         'address'       => $faker->streetAddress,
         'references'    => $faker->address,
         'age'           => rand(1,99),

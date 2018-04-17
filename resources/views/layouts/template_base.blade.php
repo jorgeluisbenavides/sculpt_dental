@@ -11,7 +11,7 @@
 
     <link rel="icon" type="image/png" href=" {{ asset('img/logos/diente-ico.png') }} " />
 
-    <title>Gentelella Alela! | </title>
+    <title> Sculpt Dental </title>
 
     <!-- Bootstrap -->
     <link href=" {{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }} " rel="stylesheet">
@@ -22,6 +22,9 @@
 
     <!-- Custom Theme Style -->
     <link href=" {{ asset('build/css/custom.min.css') }} " rel="stylesheet">
+    <!-- jQuery -->
+    <script src=" {{ asset('vendor/jquery/dist/jquery.min.js') }} "></script>
+    
   </head>
 
   <body class="nav-md">
@@ -94,7 +97,7 @@
                       <li><a href=" {{ route('home') }} " ><i class="fa fa-home"></i> Inicio </a> </li>
                       <li><a><i class="fa fa-table"></i> Citas <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href=" {{ route('citas.create') }} ">Nueva</a></li>
+                          <li><a href=" {{ route('citas') }} ">Nueva</a></li>
                           <li><a href="s.html">Buscar</a></li>
                         </ul>
                       </li>                  
@@ -238,8 +241,7 @@
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src=" {{ asset('vendor/jquery/dist/jquery.min.js') }} "></script>
+
     <!-- Bootstrap -->
     <script src=" {{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }} "></script>
     <!-- FastClick -->
@@ -249,5 +251,8 @@
     
     <!-- Custom Theme Scripts -->
     <script src=" {{ asset('build/js/custom.min.js') }} "></script>
+
+
+
   </body>
 </html>

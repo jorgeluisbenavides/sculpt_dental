@@ -158,12 +158,12 @@
             </div>
 
 
-            @if( isset( $customers ) )
+     
               <div class="row">
                 <div class="col-md-12">
-                  <div class="x_panel">
+                  <div class="x_panel" id="panel-container" style="display: none" >
                     <div class="x_title">
-                      <h2>Citas para mañana<small></small></h2>
+                      <h2>Resultados<small></small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -186,39 +186,106 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th>#</th>
+                            <th>Folio</th>
                             <th>Nombre</th>
                             <th>Acciones</th>
                           </tr>
                         </thead>
-                        <tbody>
-                        
-                          @php($cont=1)
-                          @foreach($customers as $customer)
-                            <tr>
-                              <th scope="row"> {{ $cont++ }} </th>
-                              <td>
-                                <a href=" {{ route('clientes.show', $customer->id) }} "> 
-                                  {{ $customer->last_name_one . ' ' . $customer->last_name_two . ' ' . $customer->name }} 
-                                </a>
-                              </td>
-                              <td>
-                                <a href=" {{ route('buscar_fecha', $customer->id) }} " class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Agendar </a>
-                              </td>
-                            </tr>                           
-                          @endforeach
-
+                        <tbody id="body-table">                        
+                          <!-- data by ajax -->
                         </tbody>
                       </table>
 
                     </div>
                   </div>
                 </div>
-              </div>            
-            @endif
+              </div>    
+
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="x_panel" style="display:none " id="alert-container">
+                    <div class="x_title">
+                      <h2>Uppps<small></small></h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      
+                      <div class="alert alert-danger alert-dismissible fade in" id="alert-search">
+                        <!-- text js -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 
           </div>
         </div>
         <!-- /page content -->
+
+        <script type="text/javascript">
+          
+          function searchCustomer(fullname){
+
+            var bodytable = null;
+
+            if( $("#full_name").val() != '' || $("#folio").val() != '' ){
+
+              if( $("#full_name").val() != '' )
+                $("#folio").prop('disabled',true);
+
+              if( $("#folio").val() != '' )
+                $("#full_name").prop('disabled',true);
+
+              $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });     
+
+              $.ajax({ 
+                  url: ' {{ url('search') }} ', 
+                  method: 'post', 
+                  data: { 
+                      fullname  : $("#full_name").val(),
+                      folio     : $("#folio").val(),
+                  }, 
+                  success: function(result){ 
+
+                      if( result.length > 0 ){
+                        $.each(result, function (index, value) {
+                            var url       = '{{ route("clientes.show", ":id") }}';
+                            url           = url.replace(':id', value['id']);  
+                            var url_quote = '{{ route("crear_cita", ":id") }}';
+                            url_quote     = url_quote.replace(':id', value['id']);                             
+                                
+                            bodytable = bodytable + '<tr>';
+                            bodytable = bodytable +  '<td>' + value['folio'] + '</td>';
+                            bodytable = bodytable +   '<td><a href="'+url+'">' + value['full_name'] + "</td>";
+                            bodytable = bodytable +   '<td><a href="'+url_quote+'" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Agendar </a> </td>';
+                            bodytable = bodytable + '</tr>';
+                        });
+                        $("#body-table").html( bodytable );
+                        $("#panel-container").show();
+                        $("#alert-container").hide();
+                      }else{
+                        $("#alert-search").html('Al parecer no se encontraron resultados con la busqueda seleccionada.');
+                        $("#alert-container").show();
+                        $("#panel-container").hide();
+                      }
+                  } 
+              });
+
+            }else{
+              $("#panel-container").hide();
+              $("#folio").prop('disabled',false);
+              $("#full_name").prop('disabled',false);
+            }
+          }
+
+        </script>
 
 @endsection

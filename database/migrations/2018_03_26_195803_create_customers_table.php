@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('last_name_one');
             $table->string('last_name_two');
+            $table->mediumtext('full_name');
             $table->text('address')->nullable();
             $table->text('references')->nullable();
             $table->integer('age')->nullable()->unsigned();

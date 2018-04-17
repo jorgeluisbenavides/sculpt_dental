@@ -13,14 +13,14 @@ class DoctorTableSeeder extends Seeder
      */
     public function run()
     {
-        //factory(App\Doctor::class, 50)->create();
+        factory(App\Doctor::class, 5)->create();
 
         $doctors = [
         	[
         		'name' 					=> 'Juan',
         		'last_name_one' 		=> 'Perez',
         		'last_name_two' 		=> 'Fortoso',
-                'full_name'             => 'Juan Perez Fortoso',
+                'full_name'             => 'Perez Fortoso Juan',
         		'speciality' 			=> 'Pediatria',
         		'professional_license' 	=> 'CED1244738333',
         		'cell_phone'			=> '44434344',
@@ -31,7 +31,7 @@ class DoctorTableSeeder extends Seeder
         		'name' 					=> 'Daniel',
         		'last_name_one' 		=> 'Balbuena',
         		'last_name_two' 		=> 'Tellez',
-                'full_name'             => 'Daniel Balbuena Tellez',
+                'full_name'             => 'Balbuena Tellez Daniel',
         		'speciality' 			=> 'Ortodoncia',
         		'professional_license' 	=> 'CED1244228333',
         		'cell_phone'			=> '44564344',
