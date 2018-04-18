@@ -224,9 +224,10 @@
                       <label for="message-text" class="col-form-label" >Estado</label>
                       <select class="form-control" id="sel-estado">
                         <!--<option value="Disponible">Disponible</option>-->
-                        <option value="Completado">Completado</option>
-                        <option value="No llego">No llego</option>
-                        <option value="Pendiente">Pendiente</option>
+                        <option value="Atendido">Atendido</option>
+                        <option value="En espera">En espera</option>
+                        <option value="Reagendo">Reagendo</option>
+                        <option value="No asistio">No asistio</option>                        
                       </select>
                     </div>                    
                   </form>
@@ -303,15 +304,15 @@
                           if( result.length>0 ){
 
                             $.each(result, function (index, value) {
-                              horas_quote[cont] = value['hour'] ;
-                              customer_quote[cont] = value['customer'] ;
-                              customer_id[cont] = value['id'] ;
-                              doctor_quote[cont] = value['doctor'] ;
+                              horas_quote[cont]       = value['hour'] ;
+                              customer_quote[cont]    = value['customer'] ;
+                              customer_id[cont]       = value['id'] ;
+                              doctor_quote[cont]      = value['doctor'] ;
                               observation_quote[cont] = value['observation'] ;
-                              account_quote[cont] = value['account'] ;
-                              contract_quote[cont] = value['contract'] ;
-                              treatment_quote[cont] = value['treatment'] ;
-                              status_quote[cont] = value['status'] ;
+                              account_quote[cont]     = value['account'] ;
+                              contract_quote[cont]    = value['contract'] ;
+                              treatment_quote[cont]   = value['treatment'] ;
+                              status_quote[cont]      = value['status'] ;
                               cont++;
                             });                            
 
@@ -344,9 +345,10 @@
                             url           = url.replace(':id', customer_id[pos_arr]);  
                             switch( status_quote[pos_arr] ){
                               case 'Disponible': status_class = '<span class="label label-primary"> '+status_quote[pos_arr]+' </span>'; break;
-                              case 'Pendiente': status_class = '<span class="label label-warning"> '+status_quote[pos_arr]+' </span>'; break;
-                              case 'Completado': status_class = '<span class="label label-success"> '+status_quote[pos_arr]+' </span>'; break;
-                              case 'No llego': status_class = '<span class="label label-danger"> '+status_quote[pos_arr]+' </span>'; break;
+                              case 'En espera': status_class = '<span class="label label-warning"> '+status_quote[pos_arr]+' </span>'; break;
+                              case 'Atendido': status_class = '<span class="label label-success"> '+status_quote[pos_arr]+' </span>'; break;
+                              case 'No asistio': status_class = '<span class="label label-danger"> '+status_quote[pos_arr]+' </span>'; break;
+                              case 'Reagendo': status_class = '<span class="label label-default"> '+status_quote[pos_arr]+' </span>'; break;
                             }
                             bodytable = bodytable + '<tr>' ;
                             bodytable = bodytable + ' <td>' + arr_horas[i] + '</td>' ;

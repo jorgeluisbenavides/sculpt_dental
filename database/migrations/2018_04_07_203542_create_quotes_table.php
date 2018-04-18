@@ -21,7 +21,7 @@ class CreateQuotesTable extends Migration
             $table->string('contract')->nullable();
             $table->mediumtext('treatment')->nullable();
             $table->text('observation')->nullable();
-            $table->enum('status',['Disponible','Completado','No llego','Pendiente'])->default('Disponible');
+            $table->enum('status',['Disponible','Reagendo','No asistio','En espera','Atendido'])->default('Disponible');
             $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('customer_id')->nullable();
             $table->timestamps();

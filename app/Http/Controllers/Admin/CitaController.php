@@ -90,7 +90,7 @@ class CitaController extends Controller
             $quote['doctor_id'] = $request->doctor;
             $quote['observation'] = $request->observation;
             $quote['treatment'] = $request->treatment;
-            $quote['status'] = 'Pendiente';
+            $quote['status'] = 'En espera';
 
             Quote::create( $quote );
         }
